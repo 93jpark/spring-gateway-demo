@@ -1,0 +1,18 @@
+#  포트 랜덤으로 돌려
+server:
+  port: 0
+
+#  어플리케이션 네임으로 라우팅.
+spring:
+  application:
+    name: second-service
+
+eureka:
+  client:
+    # 유레카 서버에 등록 true
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
